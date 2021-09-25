@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,16 +24,22 @@ public class Company extends BaseEntity<Long> {
     @JoinColumn(name = COMPANYNAME)
     private String companyName;
 
-    @OneToOne
+    @OneToOne(mappedBy = "company",cascade = CascadeType.ALL)
     @JoinColumn(name = CEO)
     private CEO ceo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
     @JoinColumn(name = EMPLOYEES)
     private List<Employee> employees;
 
-    @OneToMany
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
     @JoinColumn(name = TICKETS)
     private List<Ticket> tickets;
 
+    public Company(String companyName, domain.CEO ceo) {
+        this.companyName = companyName;
+        this.ceo = ceo;
+        employees = new ArrayList<>();
+        tickets = new ArrayList<>();
+    }
 }

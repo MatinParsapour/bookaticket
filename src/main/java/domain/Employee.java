@@ -18,12 +18,17 @@ import java.time.LocalDate;
 public class Employee extends User{
     private static final String EMPLOYEE_CODE = "employee_code";
     private static final String IS_EMPLOYEE = "is_employee";
+    private static final String COMPANY = "company";
 
     @JoinColumn(name = EMPLOYEE_CODE,unique = true)
     private long employeeCode;
 
     @JoinColumn(name = IS_EMPLOYEE)
     private Boolean isEmployee;
+
+    @ManyToOne
+    @JoinColumn(name = COMPANY)
+    private Company company;
 
     public Employee(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, int employeeCode, boolean isEmployee) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);

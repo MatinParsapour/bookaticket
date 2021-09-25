@@ -22,6 +22,7 @@ public class Ticket extends BaseEntity<Long> {
     private static final String NUMBEROFPASSENGERS = "number_of_passngers";
     private static final String AMOUNT = "amount";
     private static final String CUSTOMER = "customer";
+    private static final String COMPANY = "company";
 
     @JoinColumn(name = ORIGIN)
     private String origin;
@@ -44,5 +45,11 @@ public class Ticket extends BaseEntity<Long> {
     @ManyToOne
     @JoinColumn(name = CUSTOMER)
     private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = COMPANY)
+    private Company company;
+
+
 
 }

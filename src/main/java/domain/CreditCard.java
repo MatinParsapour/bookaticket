@@ -27,6 +27,7 @@ public class CreditCard extends BaseEntity<Long> {
     private static final String FIRST_PASSWORD = "first_password";
     private static final String SECOND_PASSWORD = "second_password";
     private static final String BALANCE = "balance";
+    private static final String CUSTOMER = "customer";
 
     @JoinColumn(name = BANK_NAME)
     private String bankName;
@@ -59,6 +60,7 @@ public class CreditCard extends BaseEntity<Long> {
     private double balance;
 
     @ManyToOne
+    @JoinColumn(name = CUSTOMER)
     private Customer customer;
 
     public CreditCard(String bankName, String userSureName,

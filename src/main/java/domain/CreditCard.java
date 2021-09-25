@@ -58,6 +58,9 @@ public class CreditCard extends BaseEntity<Long> {
     @JoinColumn(name = BALANCE)
     private double balance;
 
+    @ManyToOne
+    private Customer customer;
+
     public CreditCard(String bankName, String userSureName,
                       long cardNumber, int cVV2, LocalDate expirationDate,
                       int branchCode, String shebaNumber, int firstPassword) {

@@ -25,15 +25,12 @@ public class Company extends BaseEntity<Long> {
     private String companyName;
 
     @OneToOne(mappedBy = "company",cascade = CascadeType.ALL)
-    @JoinColumn(name = CEO)
     private CEO ceo;
 
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
-    @JoinColumn(name = EMPLOYEES)
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
-    @JoinColumn(name = TICKETS)
     private List<Ticket> tickets;
 
     public Company(String companyName, domain.CEO ceo) {

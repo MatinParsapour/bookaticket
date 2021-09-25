@@ -31,11 +31,9 @@ public class Customer extends User{
     private long password;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    @JoinColumn(name = CREDITCARDS)
     private List<CreditCard> creditCards;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    @JoinColumn(name = TICKETS)
     private List<Ticket> tickets;
 
     public Customer(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, String userName, long password) {

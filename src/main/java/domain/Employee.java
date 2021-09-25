@@ -20,7 +20,6 @@ public class Employee extends User{
     private static final String IS_EMPLOYEE = "is_employee";
     private static final String COMPANY = "company";
 
-    @JoinColumn(name = EMPLOYEE_CODE,unique = true)
     private long employeeCode;
 
     @JoinColumn(name = IS_EMPLOYEE)

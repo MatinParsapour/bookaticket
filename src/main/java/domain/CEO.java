@@ -20,9 +20,9 @@ public class CEO extends User{
     private static final String CEO_CODE = "ceo_code";
 
     @JoinColumn(name = CEO_CODE,unique = true)
-    private int cEOCode;
+    private long cEOCode;
 
-    public CEO(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, int cEOCode) {
+    public CEO(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, long cEOCode) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.cEOCode = cEOCode;
     }

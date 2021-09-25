@@ -36,16 +36,16 @@ public class User extends BaseEntity<Long> {
     private String email;
 
     @JoinColumn(name = PHONE_NUMBER)
-    private String phoneNumber;
+    private long phoneNumber;
 
     @JoinColumn(name = NATIONAL_CODE)
-    private String nationalCode;
+    private long nationalCode;
 
     @JoinColumn(name = BIRTH_DATE)
     private LocalDate birthDate;
 
-    public User(String firstName, String lastName, String email, String phoneNumber,
-                String nationalCode, LocalDate birthDate) {
+    public User(String firstName, String lastName, String email, long phoneNumber,
+                long nationalCode, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

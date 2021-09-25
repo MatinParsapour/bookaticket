@@ -25,13 +25,13 @@ public class Customer extends User{
     private String userName;
 
     @JoinColumn(name = PASSWORD)
-    private String password;
+    private long password;
 
     @OneToMany(mappedBy = "customer")
     @JoinColumn(name = CREDITCARDS)
     private List<CreditCard> creditCards;
 
-    public Customer(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, String userName, String password) {
+    public Customer(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, String userName, long password) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.userName = userName;
         this.password = password;

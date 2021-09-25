@@ -15,9 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Company extends BaseEntity<Long> {
     public static final String COMPANYTABLE = "company_table";
+    private static final String COMPANYNAME = "company_name";
     private static final String CEO = "ceo";
     private static final String EMPLOYEES = "employees";
     private static final String TICKETS = "tickets";
+
+    @JoinColumn(name = COMPANYNAME)
+    private String companyName;
 
     @OneToOne
     @JoinColumn(name = CEO)

@@ -22,7 +22,7 @@ public class CEO extends User{
     @JoinColumn(name = CEO_CODE,unique = true)
     private long cEOCode;
 
-    public CEO(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, long cEOCode) {
+    public CEO(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, long cEOCode) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.cEOCode = cEOCode;
     }

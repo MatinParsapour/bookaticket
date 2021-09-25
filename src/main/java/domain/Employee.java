@@ -25,7 +25,7 @@ public class Employee extends User{
     @JoinColumn(name = IS_EMPLOYEE)
     private Boolean isEmployee;
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, int employeeCode, boolean isEmployee) {
+    public Employee(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, int employeeCode, boolean isEmployee) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.employeeCode = employeeCode;
         this.isEmployee = isEmployee;

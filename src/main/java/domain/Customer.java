@@ -31,7 +31,7 @@ public class Customer extends User{
     @JoinColumn(name = CREDITCARDS)
     private List<CreditCard> creditCards;
 
-    public Customer(String firstName, String lastName, String email, String phoneNumber, String nationalCode, LocalDate birthDate, String userName, long password) {
+    public Customer(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, String userName, long password) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.userName = userName;
         this.password = password;

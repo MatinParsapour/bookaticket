@@ -1,6 +1,7 @@
 package service.impl;
 
 import base.service.BaseServiceImpl;
+import domain.Company;
 import domain.Employee;
 import repository.EmployeeRepository;
 import service.EmployeeService;
@@ -48,7 +49,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
     private void request() {
         System.out.print("National code : ");
         String nationalCode = new Scanner(System.in).next();
-        Employee employee = repository.findEmployeeByNationalCode(nationalCode);
+        Employee employee = repository.findEmployeeByNationalCode(Long.parseLong(nationalCode));
         if(employee.getIsEmployee() == null){
             System.out.println("In progress");
         }else if(!employee.getIsEmployee()){
@@ -59,8 +60,10 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
     }
 
     private void Application() {
-        //TODO Create a method for volunteer to choose what company want to apply for
-        if(true){
+        Company company = ApplicationContext.getCompanyServiceImpl().selectCompany();
+        if(company == null){
+            System.out.println("Wrong input");
+        } else{
             Employee employee = new Employee();
             employee.setFirstName(firstName());
             employee.setLastName(lastName());
@@ -68,7 +71,8 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
             employee.setPhoneNumber(phoneNumber(0L));
             employee.setNationalCode(nationalCode());
             employee.setBirthDate(birthday());
-
+            employee.setIsEmployee(null);
+            employee.setCompany(company);
             createOrUpdate(employee);
         }
     }
@@ -112,7 +116,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
                     nationalCode = new Scanner(System.in).next();
                     matcher = pattern.matcher(nationalCode);
                 }
-                Employee employee = repository.findEmployeeByNationalCode(nationalCode);
+                Employee employee = repository.findEmployeeByNationalCode(Long.parseLong(nationalCode));
                 if(employee == null){
                     System.out.println("1.Acceptable         2.Unacceptable");
                     int choice = new Scanner(System.in).nextInt();

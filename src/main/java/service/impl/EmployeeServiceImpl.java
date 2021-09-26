@@ -10,6 +10,7 @@ import util.*;
 
 import java.time.LocalDate;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -105,6 +106,15 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
         }
     }
 
+    @Override
+    public List<Employee> requests() {
+        return repository.findRequestsForCEO();
+    }
+
+    public Employee returnEmployee(long id){
+        return repository.findEmployeeByIdForCEO(id);
+    }
+
     private void mainMenu() {
         while(true){
             try{
@@ -119,6 +129,22 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
                 }
             }catch (InputMismatchException exception){
                 System.out.println("Wrong input");
+            }
+        }
+    }
+
+    public long generateEmployeeCode(){
+        Random random = new Random();
+        String employeeCodeString = "";
+        while(true){
+            employeeCodeString = "";
+            for(int i = 0; i<10; i++){
+                employeeCodeString += random.nextInt(9);
+            }
+            long employeeCode = Long.parseLong(employeeCodeString);
+            Employee employee = repository.findEmployeeByEmployeeCode(employeeCode);
+            if(employee == null){
+                return employeeCode;
             }
         }
     }

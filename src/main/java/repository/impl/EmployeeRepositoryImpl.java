@@ -5,6 +5,7 @@ import domain.Employee;
 import repository.EmployeeRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 public class EmployeeRepositoryImpl extends BaseRepositoryImpl<Employee, Long> implements EmployeeRepository {
     public EmployeeRepositoryImpl(EntityManager entityManager) {
@@ -14,5 +15,31 @@ public class EmployeeRepositoryImpl extends BaseRepositoryImpl<Employee, Long> i
     @Override
     public Class<Employee> getEntity() {
         return Employee.class;
+    }
+
+    @Override
+    public Employee findEmployeeByEmployeeCode(long employeeCode) {
+        try{
+            return entityManager.createQuery("SELECT e " +
+                    "FROM Employee e " +
+                    "WHERE e.employeeCode = :employeeCode",Employee.class).
+                    setParameter("employeeCode",employeeCode).
+                    getSingleResult();
+        }catch (NoResultException exception){
+            return null;
+        }
+    }
+
+    @Override
+    public Employee findEmployeeByNationalCode(String nationalCode) {
+        try{
+            return entityManager.createQuery("SELECT e " +
+                    "FROM Employee e " +
+                    "WHERE e.nationalCode = :nationalCode",Employee.class).
+                    setParameter("nationalCode",nationalCode).
+                    getSingleResult();
+        }catch (NoResultException exception){
+            return null;
+        }
     }
 }

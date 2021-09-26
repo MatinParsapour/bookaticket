@@ -10,7 +10,7 @@ public class BookTicket {
                 ApplicationContext.getDemonstrationMenus().mainMenu();
                 int choice = new Scanner(System.in).nextInt();
                 if(choice == 1){
-                    //TODO CEO
+                    ApplicationContext.getCEOService().firstMenu();
                 }else if (choice == 2){
                     ApplicationContext.getEmployeeService().firstMenu();
                 }else if (choice == 3){

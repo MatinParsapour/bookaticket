@@ -14,7 +14,7 @@ public class BookTicket {
                 }else if (choice == 2){
                     //TODO Employee
                 }else if (choice == 3){
-                    //TODO Customer
+                    ApplicationContext.getCustomerService().firstMenu();
                 }else if(choice == 4){
                     System.out.println("Hope to see you soon");
                     break;

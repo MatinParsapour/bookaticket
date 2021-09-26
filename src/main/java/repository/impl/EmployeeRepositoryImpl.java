@@ -31,7 +31,7 @@ public class EmployeeRepositoryImpl extends BaseRepositoryImpl<Employee, Long> i
     }
 
     @Override
-    public Employee findEmployeeByNationalCode(String nationalCode) {
+    public Employee findEmployeeByNationalCode(long nationalCode) {
         try{
             return entityManager.createQuery("SELECT e " +
                     "FROM Employee e " +

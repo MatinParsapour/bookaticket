@@ -98,7 +98,10 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 } else if (choice == 5) {
                     break;
                 } else if (choice == 6) {
-                    logOut();
+                    int nextMover = logOut();
+                    if(nextMover == 1){
+                        break;
+                    }
                 } else {
                     System.out.println("Wrong input");
                 }

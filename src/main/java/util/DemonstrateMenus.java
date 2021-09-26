@@ -4,9 +4,9 @@ public class DemonstrateMenus {
 
     public void mainMenu(){
         System.out.println("+------------------------------+");
-        System.out.println("|            1.CEO             |");//TODO - main menu - CEO
-        System.out.println("|          2.Employee          |");//TODO - main menu - Employee
-        System.out.println("|          3.Customer          |");//TODO - main menu - Customer
+        System.out.println("|            1.CEO             |");
+        System.out.println("|          2.Employee          |");
+        System.out.println("|          3.Customer          |");
         System.out.println("+------------------------------+");
     }
 
@@ -46,7 +46,8 @@ public class DemonstrateMenus {
         System.out.println("|        2.Your cards          |");//TODO - Customer main menu - Your cards
         System.out.println("|       3.Book a ticket        |");//TODO - Customer main menu - book a ticket
         System.out.println("|      4.booked tickets        |");//TODO - Customer main menu - booked tickets
-        System.out.println("|          5.Exit              |");
+        System.out.println("|         5.Log out            |");//TODO - Customer main menu - Log out
+        System.out.println("|           6.Exit             |");
         System.out.println("+------------------------------+");
     }
 

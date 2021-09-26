@@ -17,6 +17,12 @@ public class DemonstrateMenus {
         System.out.println("+------------------------------+");
     }
 
+    public void requestSituation(){
+        System.out.println("+------------------------------+");
+        System.out.println("|1.Accept              2.Reject|");
+        System.out.println("+------------------------------+");
+    }
+
     public void employeeMainMenu(){
         System.out.println("+------------------------------+");
         System.out.println("|       1.Add a ticket         |");//TODO - Employee main menu - Add a ticket

@@ -28,15 +28,13 @@ public class Company extends BaseEntity<Long> {
     private CEO ceo;
 
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
-    private List<Employee> employees;
+    private List<Employee> employees = new ArrayList<>();
 
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Company(String companyName, domain.CEO ceo) {
         this.companyName = companyName;
         this.ceo = ceo;
-        employees = new ArrayList<>();
-        tickets = new ArrayList<>();
     }
 }

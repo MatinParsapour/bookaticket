@@ -102,6 +102,9 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                     if(nextMover == 1){
                         break;
                     }
+                } else if (choice == 7){
+                    SecurityUser.setCustomer(null);
+                    break;
                 } else {
                     System.out.println("Wrong input");
                 }
@@ -120,6 +123,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 int choice = new Scanner(System.in).nextInt();
                 if (choice == 1) {
                     delete(SecurityUser.getCustomer());
+                    SecurityUser.setCustomer(null);
                     return 1;
                 } else if (choice == 2) {
                     return 2;

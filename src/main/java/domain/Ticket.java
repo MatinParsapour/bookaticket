@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = Ticket.TICKETTABLE)
@@ -42,14 +43,20 @@ public class Ticket extends BaseEntity<Long> {
     @JoinColumn(name = AMOUNT)
     private Double amount;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = CUSTOMER)
-    private Customer customer;
+    private List<Customer> customer;
 
     @ManyToOne
     @JoinColumn(name = COMPANY)
     private Company company;
 
-
-
+    public Ticket(String origin, String destination, LocalDateTime departureDate, LocalDateTime returnDate, int numberOfPassengers, Double amount) {
+        this.origin = origin;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.returnDate = returnDate;
+        this.numberOfPassengers = numberOfPassengers;
+        this.amount = amount;
+    }
 }

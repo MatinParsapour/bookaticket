@@ -46,7 +46,8 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
         }
     }
 
-    private void request() {
+    @Override
+    public void request() {
         System.out.print("National code : ");
         String nationalCode = new Scanner(System.in).next();
         Employee employee = repository.findEmployeeByNationalCode(Long.parseLong(nationalCode));

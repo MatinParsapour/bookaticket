@@ -24,7 +24,7 @@ public class ApplicationContext {
     private static final TicketServiceImpl ticketServiceImpl;
     private static final UserServiceImpl userService;
 
-    private static final DemonstrateMenus demonstrateMenus;
+    private static final DemonstrateMenus demonstrationMenus;
 
     static {
         EntityManager entityManager = HibernateUtil.getEntityManagerFactory().createEntityManager();
@@ -44,7 +44,7 @@ public class ApplicationContext {
         ticketServiceImpl = new TicketServiceImpl(ticketRepository);
         userService = new UserServiceImpl(userRepository);
 
-        demonstrateMenus = new DemonstrateMenus();
+        demonstrationMenus = new DemonstrateMenus();
     }
 
     public static CEOServiceImpl getCEOService(){return cEOService;}
@@ -54,5 +54,5 @@ public class ApplicationContext {
     public static CustomerServiceImpl getCustomerService(){return customerService;}
     public static TicketServiceImpl getTicketServiceImpl(){return ticketServiceImpl;}
     public static EmployeeServiceImpl getEmployeeService(){return employeeService;}
-    public static DemonstrateMenus getDemonstrateMenus(){return demonstrateMenus;}
+    public static DemonstrateMenus getDemonstrationMenus(){return demonstrationMenus;}
 }

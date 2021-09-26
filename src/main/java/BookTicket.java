@@ -12,7 +12,7 @@ public class BookTicket {
                 if(choice == 1){
                     //TODO CEO
                 }else if (choice == 2){
-                    //TODO Employee
+                    ApplicationContext.getEmployeeService().firstMenu();
                 }else if (choice == 3){
                     ApplicationContext.getCustomerService().firstMenu();
                 }else if(choice == 4){

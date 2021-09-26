@@ -1,6 +1,7 @@
 package service.impl;
 
 import base.service.BaseServiceImpl;
+import com.github.javafaker.App;
 import domain.Company;
 import domain.Employee;
 import repository.EmployeeRepository;
@@ -95,8 +96,26 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
                 }else{
                     System.out.println("Welcome : " + employee.getFirstName() + " " + employee.getLastName());
                     SecurityUser.setEmployee(employee);
-                    //TODO main menu for employee
+                    mainMenu();
                     break;
+                }
+            }catch (InputMismatchException exception){
+                System.out.println("Wrong input");
+            }
+        }
+    }
+
+    private void mainMenu() {
+        while(true){
+            try{
+                ApplicationContext.getDemonstrationMenus().employeeMainMenu();
+                int choice = new Scanner(System.in).nextInt();
+                if(choice == 1){
+                    ApplicationContext.getTicketServiceImpl().addTicket();
+                }else if (choice == 2){
+                    break;
+                }else{
+                    System.out.println("Wrong input");
                 }
             }catch (InputMismatchException exception){
                 System.out.println("Wrong input");

@@ -87,21 +87,44 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
             try {
                 ApplicationContext.getDemonstrationMenus().customerMainMenu();
                 int choice = new Scanner(System.in).nextInt();
-                if(choice == 1){
+                if (choice == 1) {
                     //TODO History
-                } else if (choice == 2){
+                } else if (choice == 2) {
                     //TODO Your cards
-                } else if(choice == 3){
+                } else if (choice == 3) {
                     //TODO Book a ticket
-                } else if(choice == 4){
+                } else if (choice == 4) {
                     //TODO Booked ticket
-                } else if(choice == 5){
+                } else if (choice == 5) {
                     break;
-                }else {
+                } else if (choice == 6) {
+                    logOut();
+                } else {
                     System.out.println("Wrong input");
                 }
             } catch (InputMismatchException exception) {
                 System.out.println("Wrong input");
+            }
+        }
+    }
+
+    @Override
+    public int logOut() {
+        while (true) {
+            try {
+                System.out.println("Are you sure");
+                System.out.println("1.Yes   2.NO");
+                int choice = new Scanner(System.in).nextInt();
+                if (choice == 1) {
+                    delete(SecurityUser.getCustomer());
+                    return 1;
+                } else if (choice == 2) {
+                    return 2;
+                } else {
+                    System.out.println("Choose between options");
+                }
+            } catch (InputMismatchException exception) {
+                System.out.println("Invalid entry");
             }
         }
     }

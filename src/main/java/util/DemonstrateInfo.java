@@ -1,6 +1,7 @@
 package util;
 
 import domain.Company;
+import domain.CreditCard;
 import domain.Employee;
 import domain.Ticket;
 
@@ -169,6 +170,54 @@ public class DemonstrateInfo {
 
         System.out.print("+");
         for(int i = 0 ; i<cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+    }
+
+    public void demonstrateCardsInfo(List<CreditCard> creditCardList) {
+        int idSize = 5;
+        int cardNumberSize = 16;
+        int cvv2Size = 4;
+        int expirationDateSize = 10;
+        int balanceSize = 0;
+        for(CreditCard creditCard : creditCardList){
+            if(String.valueOf(creditCard.getBalance()).length() > balanceSize){
+                balanceSize = String.valueOf(creditCard.getBalance()).length();
+            }
+        }
+        int cover = idSize + cardNumberSize + cvv2Size + expirationDateSize + balanceSize + 35;
+
+        System.out.print("+");
+        for(int i = 0 ; i< cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        System.out.format("| %" + (-(idSize + 5)) + "s","id");
+        System.out.format("| %" + (-(cardNumberSize + 5)) + "s","card number");
+        System.out.format("| %" + (-(cvv2Size + 5)) + "s","cvv2");
+        System.out.format("| %" + (-(expirationDateSize + 5)) + "s","expiration date");
+        System.out.format("| %" + (-(balanceSize + 5)) + "s |\n","balance");
+
+
+        System.out.print("+");
+        for(int i = 0 ; i< cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        for(CreditCard creditCard : creditCardList){
+            System.out.format("| %" + (-(idSize + 5)) + "s",creditCard.getId());
+            System.out.format("| %" + (-(cardNumberSize + 5)) + "s",creditCard.getCardNumber());
+            System.out.format("| %" + (-(cvv2Size + 5)) + "s",creditCard.getCVV2());
+            System.out.format("| %" + (-(expirationDateSize + 5)) + "s",creditCard.getExpirationDate());
+            System.out.format("| %" + (-(balanceSize + 5)) + "s |\n",creditCard.getBalance());
+        }
+
+
+        System.out.print("+");
+        for(int i = 0 ; i< cover; i++){
             System.out.print("-");
         }
         System.out.println("+");

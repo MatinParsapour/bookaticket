@@ -15,6 +15,7 @@ public class ApplicationContext {
     private static final EmployeeRepository employeeRepository;
     private static final TicketRepository ticketRepository;
     private static final UserRepository userRepository;
+    private static final HistoryRepository historyRepository;
 
     private static final CEOServiceImpl cEOService;
     private static final CompanyServiceImpl companyServiceImpl;
@@ -23,6 +24,7 @@ public class ApplicationContext {
     private static final EmployeeServiceImpl employeeService;
     private static final TicketServiceImpl ticketServiceImpl;
     private static final UserServiceImpl userService;
+    private static final HistoryServiceImpl historyServiceImpl;
 
     private static final DemonstrateMenus demonstrationMenus;
     private static final DemonstrateInfo demonstrateInfo;
@@ -36,6 +38,7 @@ public class ApplicationContext {
         employeeRepository = new EmployeeRepositoryImpl(entityManager);
         ticketRepository = new TicketRepositoryImpl(entityManager);
         userRepository = new UserRepositoryImpl(entityManager);
+        historyRepository = new HistoryRepositoryImpl(entityManager);
 
         cEOService = new CEOServiceImpl(cEORepository);
         companyServiceImpl = new CompanyServiceImpl(companyRepository);
@@ -44,6 +47,7 @@ public class ApplicationContext {
         employeeService = new EmployeeServiceImpl(employeeRepository);
         ticketServiceImpl = new TicketServiceImpl(ticketRepository);
         userService = new UserServiceImpl(userRepository);
+        historyServiceImpl = new HistoryServiceImpl(historyRepository);
 
         demonstrationMenus = new DemonstrateMenus();
         demonstrateInfo = new DemonstrateInfo();
@@ -56,6 +60,7 @@ public class ApplicationContext {
     public static CustomerServiceImpl getCustomerService(){return customerService;}
     public static TicketServiceImpl getTicketServiceImpl(){return ticketServiceImpl;}
     public static EmployeeServiceImpl getEmployeeService(){return employeeService;}
+    public static HistoryServiceImpl getHistoryServiceImpl(){return historyServiceImpl;}
     public static DemonstrateMenus getDemonstrationMenus(){return demonstrationMenus;}
     public static DemonstrateInfo getDemonstrateInfo(){return demonstrateInfo;}
 }

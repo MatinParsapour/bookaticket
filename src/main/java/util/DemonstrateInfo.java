@@ -1,9 +1,6 @@
 package util;
 
-import domain.Company;
-import domain.CreditCard;
-import domain.Employee;
-import domain.Ticket;
+import domain.*;
 
 import java.util.List;
 
@@ -218,6 +215,71 @@ public class DemonstrateInfo {
 
         System.out.print("+");
         for(int i = 0 ; i< cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+    }
+
+    public void demonstrateCustomerTickets(List<History> histories) {
+        int idSize = 5;
+        int originSize = 0;
+        int destinationSize= 0;
+        int departureDate = 30;
+        int returnDate = 30;
+        int amountSize =0;
+        int numberOfTicketsSize = 5;
+        int isBookedSize = 8;
+        int isBoughtSize = 8;
+        for(History history : histories){
+            if(history.getTickets().getOrigin().length() > originSize){
+                originSize = history.getTickets().getOrigin().length() ;
+            }if(history.getTickets().getDestination().length() > destinationSize){
+                destinationSize = history.getTickets().getDestination().length();
+            }if(String.valueOf((history.getTickets().getAmount())).length() > amountSize){
+                amountSize = String.valueOf((history.getTickets().getAmount())).length();
+            }
+        }
+
+        int cover = idSize + originSize + destinationSize + departureDate + returnDate + amountSize + numberOfTicketsSize + isBookedSize + isBoughtSize + 98;
+
+        System.out.print("+");
+        for(int i =0 ; i< cover;i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        System.out.format("| %" + (-(idSize + 5)) + "s","id");
+        System.out.format("| %" + (-(originSize + 5)) + "s","origin");
+        System.out.format("| %" + (-(destinationSize + 5)) + "s","destination");
+        System.out.format("| %" + (-(departureDate + 5)) + "s","departure date");
+        System.out.format("| %" + (-(returnDate + 5)) + "s","return date");
+        System.out.format("| %" + (-(amountSize + 25)) + "s","price for one person");
+        System.out.format("| %" + (-(numberOfTicketsSize + 20)) + "s","number of tickets");
+        System.out.format("| %" + (-(isBookedSize + 5)) + "s","Is booked");
+        System.out.format("| %" + (-(isBoughtSize + 5)) + "s |\n","Is bought");
+
+
+
+        System.out.print("+");
+        for(int i =0 ; i< cover;i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        for(History history : histories){
+            System.out.format("| %" + (-(idSize + 5)) + "s",history.getTickets().getId());
+            System.out.format("| %" + (-(originSize + 5)) + "s",history.getTickets().getOrigin());
+            System.out.format("| %" + (-(destinationSize + 5)) + "s",history.getTickets().getDestination());
+            System.out.format("| %" + (-(departureDate + 5)) + "s",history.getTickets().getDepartureDate());
+            System.out.format("| %" + (-(returnDate + 5)) + "s",history.getTickets().getReturnDate());
+            System.out.format("| %" + (-(amountSize + 25)) + "s",history.getTickets().getAmount());
+            System.out.format("| %" + (-(numberOfTicketsSize + 20)) + "s",history.getNumberOfTicket());
+            System.out.format("| %" + (-(isBookedSize + 5)) + "s",history.getIsBooked());
+            System.out.format("| %" + (-(isBoughtSize + 5)) + "s |\n",history.getIsBought());
+        }
+
+        System.out.print("+");
+        for(int i =0 ; i< cover;i++){
             System.out.print("-");
         }
         System.out.println("+");

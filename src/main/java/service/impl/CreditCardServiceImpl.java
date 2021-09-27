@@ -2,6 +2,7 @@ package service.impl;
 
 import base.service.BaseServiceImpl;
 import domain.CreditCard;
+import domain.History;
 import repository.CreditCardRepository;
 import service.CreditCardService;
 import util.ApplicationContext;
@@ -19,7 +20,7 @@ public class CreditCardServiceImpl extends BaseServiceImpl<CreditCard, Long, Cre
 
 
     @Override
-    public void CustomerCards() {
+    public void customerCards() {
         while(true){
             try{
                 List<CreditCard> creditCardList = repository.findCustomerCreditCards();
@@ -157,9 +158,8 @@ public class CreditCardServiceImpl extends BaseServiceImpl<CreditCard, Long, Cre
         }
     }
     private LocalDate expirationDate() {
-        System.out.println("Enter year of expiration date : ");
+        System.out.println("Expiration date");
         int year = year();
-        System.out.println("Enter month of expiration date : ");
         int month = month();
         return LocalDate.of(year,month,15);
     }
@@ -203,5 +203,38 @@ public class CreditCardServiceImpl extends BaseServiceImpl<CreditCard, Long, Cre
         System.out.print("cvv2 : ");
         int cvv2 = new Scanner(System.in).nextInt();
         return cvv2;
+    }
+
+    public void buyTicket(History history, double result) {
+        CreditCard creditCard = getCard();
+        LocalDate expirationDate = expirationDate();
+        int cvv2 = cvv2();
+        int secondPassword = secondPassword();
+        if(creditCard.getExpirationDate().equals(expirationDate) && creditCard.getSecondPassword() == secondPassword && creditCard.getCVV2() == cvv2){
+            if(creditCard.getBalance() > result){
+                double nextBalance = creditCard.getBalance() - result;
+                creditCard.setBalance(nextBalance);
+                createOrUpdate(creditCard);
+                ApplicationContext.getHistoryServiceImpl().boughtTicket(history);
+                System.out.println("You successfully bought the ticket");
+            }else{
+                System.out.println("You don't have enough balance");
+            }
+        }else{
+            System.out.println("The information is incorrect");
+        }
+    }
+
+    private CreditCard getCard(){
+        while(true){
+            System.out.print("Card number : ");
+            long cardNumber = new Scanner(System.in).nextLong();
+            CreditCard creditCard = repository.findCustomerCreditCardByCardNumber(cardNumber);
+            if(creditCard == null){
+                System.out.println("The cardNumber is incorrect");
+            }else{
+                return creditCard;
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ package service.impl;
 
 import base.service.BaseServiceImpl;
 import domain.Company;
+import domain.History;
 import domain.Ticket;
 import repository.TicketRepository;
 import service.TicketService;
@@ -31,6 +32,7 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket, Long, TicketRepos
         Company company = SecurityUser.getEmployee().getCompany();
         Ticket ticket = new Ticket(origin,destination,departureDateTime,returnDateTime,numberOfPassengers,amount);
         ticket.setCompany(company);
+        ticket.getCustomer().add(SecurityUser.getCustomer());
         createOrUpdate(ticket);
         company.getTickets().add(ticket);
         ApplicationContext.getCompanyServiceImpl().createOrUpdate(company);
@@ -275,8 +277,55 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket, Long, TicketRepos
                 int currentNumberOfPassengers = ticket.getNumberOfPassengers();
                 int nextNumberOfPassengers = currentNumberOfPassengers - passengers;
                 ticket.setNumberOfPassengers(nextNumberOfPassengers);
+                ticket.getCustomer().add(SecurityUser.getCustomer());
                 createOrUpdate(ticket);
                 System.out.println("Your ticket successfully booked");
+            }
+        }
+    }
+
+    public void deleteATicket() {
+        System.out.print("Enter id of ticket you want to delete : ");
+        long id = new Scanner(System.in).nextLong();
+        History history = ApplicationContext.getHistoryServiceImpl().findHistory(id);
+        if(history.getTickets() == null){
+            System.out.println("The id is incorrect");
+        }else{
+            System.out.println("Are you sure");
+            System.out.println("1.Yes   2.No");
+            int choice = new Scanner(System.in).nextInt();
+            if(choice == 1 && history.getIsBought().equals(false)){
+                int passengers = ApplicationContext.getHistoryServiceImpl().deleteTicketFromHistory(history);
+                int currentNumberOfPassengers = history.getTickets().getNumberOfPassengers();
+                int nextNumberOfPassengers = passengers + currentNumberOfPassengers;
+                history.getTickets().setNumberOfPassengers(nextNumberOfPassengers);
+                int indexOfCustomer = history.getTickets().getCustomer().indexOf(SecurityUser.getCustomer());
+                history.getTickets().getCustomer().remove(indexOfCustomer);
+                createOrUpdate(history.getTickets());
+            }else if(choice == 1 && history.getIsBought().equals(true)){
+                ApplicationContext.getHistoryServiceImpl().deleteTicketFromHistory(history);
+                int indexOfCustomer = history.getTickets().getCustomer().indexOf(SecurityUser.getCustomer());
+                history.getTickets().getCustomer().remove(indexOfCustomer);
+                createOrUpdate(history.getTickets());
+            }
+        }
+    }
+
+    public void buyATicket() {
+        System.out.print("Enter id : ");
+        long id = new Scanner(System.in).nextLong();
+        History history = ApplicationContext.getHistoryServiceImpl().findHistory(id);
+        if(history == null){
+            System.out.println("The id is incorrect");
+        }else{
+            int passengers = history.getNumberOfTicket();
+            double price = history.getTickets().getAmount();
+            double result = (passengers * price);
+            System.out.println("Final price is : " + result);
+            System.out.println("1.Buy               2.Back");
+            int choice = new Scanner(System.in).nextInt();
+            if(choice == 1){
+                ApplicationContext.getCreditCardService().buyTicket(history,result);
             }
         }
     }

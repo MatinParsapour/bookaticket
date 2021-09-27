@@ -10,6 +10,7 @@ import util.SecurityUser;
 
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class TicketServiceImpl extends BaseServiceImpl<Ticket, Long, TicketRepository> implements TicketService {
@@ -173,6 +174,109 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket, Long, TicketRepos
                 return amount;
             }catch (InputMismatchException exception){
                 System.out.println("Wrong input");
+            }
+        }
+    }
+
+    public void showTickets() {
+        List<Ticket> ticketList = null;
+        System.out.print("Origin : ");
+        String origin = new Scanner(System.in).nextLine();
+        System.out.print("Destination : ");
+        String destination = new Scanner(System.in).nextLine();
+        while(true){
+            try{
+                if(ticketList == null){
+                    ticketList = repository.findAllTicketsByOriginAndDestination(origin,destination);
+                    if(ticketList.size() == 0){
+                        System.out.println("There's no ticket for this direction");
+                        break;
+                    }else{
+                        ApplicationContext.getDemonstrateInfo().demonstrateTicketsInfo(ticketList);
+                        ApplicationContext.getDemonstrationMenus().ticketMenu();
+                        int choice = new Scanner(System.in).nextInt();
+                        if(choice == 1){
+                            ticketList = repository.findTicketsByOrder("price","ascending",origin,destination);
+                        }else if(choice == 2){
+                            ticketList = repository.findTicketsByOrder("price","descending",origin,destination);
+                        }else if(choice == 3){
+                            ticketList = repository.findTicketsByOrder("companyName","ascending",origin,destination);
+                        }else if(choice == 4){
+                            ticketList = repository.findTicketsByOrder("origin","ascending",origin,destination);
+                        }else if(choice == 5){
+                            ticketList = repository.findTicketsByOrder("origin","descending",origin,destination);
+                        }else if(choice == 6){
+                            ticketList = repository.findTicketsByOrder("companyName","descending",origin,destination);
+                        }else if(choice == 7){
+                            ticketList = repository.findTicketsByOrder("destination","ascending",origin,destination);
+                        }else if(choice == 8){
+                            ticketList = repository.findTicketsByOrder("destination","descending",origin,destination);
+                        }else if(choice == 9){
+                            bookATicket(origin,destination);
+                        }else if(choice == 10){
+                            break;
+                        }else{
+                            System.out.println("Wrong input");
+                        }
+                    }
+                }else {
+                    ApplicationContext.getDemonstrateInfo().demonstrateTicketsInfo(ticketList);
+                    ApplicationContext.getDemonstrationMenus().ticketMenu();
+                    int choice = new Scanner(System.in).nextInt();
+                    if(choice == 1){
+                        ticketList = repository.findTicketsByOrder("price","ascending",origin,destination);
+                    }else if(choice == 2){
+                        ticketList = repository.findTicketsByOrder("price","descending",origin,destination);
+                    }else if(choice == 3){
+                        ticketList = repository.findTicketsByOrder("companyName","ascending",origin,destination);
+                    }else if(choice == 4){
+                        ticketList = repository.findTicketsByOrder("origin","ascending",origin,destination);
+                    }else if(choice == 5){
+                        ticketList = repository.findTicketsByOrder("origin","descending",origin,destination);
+                    }else if(choice == 6){
+                        ticketList = repository.findTicketsByOrder("companyName","descending",origin,destination);
+                    }else if(choice == 7){
+                        ticketList = repository.findTicketsByOrder("destination","ascending",origin,destination);
+                    }else if(choice == 8){
+                        ticketList = repository.findTicketsByOrder("destination","descending",origin,destination);
+                    }else if(choice == 9){
+                        bookATicket(origin,destination);
+                    }else if(choice == 10){
+                        break;
+                    }else{
+                        System.out.println("Wrong input");
+                    }
+                }
+            }catch (InputMismatchException exception){
+                System.out.println("Wrong input");
+            }
+        }
+    }
+
+    private List<Ticket> getTickets(List<Ticket> ticketList, String origin, String destination) {
+
+        return ticketList;
+    }
+
+    private void bookATicket(String origin,String destination) {
+        System.out.print("Enter id of ticket : ");
+        long id = new Scanner(System.in).nextLong();
+        Ticket ticket = repository.findTicketByIdForCustomer(id,origin,destination);
+        if(ticket == null){
+            System.out.println("The id is incorrect");
+        }else{
+            System.out.print("How many passengers : ");
+            int passengers = new Scanner(System.in).nextInt();
+            if(ticket.getNumberOfPassengers() < passengers){
+                System.out.println("Sorry we don't have enough capacity");
+            }else{
+                ApplicationContext.getHistoryServiceImpl().addHistory(ticket,passengers);
+                ApplicationContext.getCustomerService().addTicketToList(ticket);
+                int currentNumberOfPassengers = ticket.getNumberOfPassengers();
+                int nextNumberOfPassengers = currentNumberOfPassengers - passengers;
+                ticket.setNumberOfPassengers(nextNumberOfPassengers);
+                createOrUpdate(ticket);
+                System.out.println("Your ticket successfully booked");
             }
         }
     }

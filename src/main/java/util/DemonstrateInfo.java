@@ -2,6 +2,7 @@ package util;
 
 import domain.Company;
 import domain.Employee;
+import domain.Ticket;
 
 import java.util.List;
 
@@ -104,6 +105,70 @@ public class DemonstrateInfo {
 
         System.out.print("+");
         for(int i = 0 ; i < cover ; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+    }
+
+    public void demonstrateTicketsInfo(List<Ticket> ticketList) {
+        int idSize = 10;
+        int originSize = 0;
+        int destinationSize = 0;
+        int departureDateSize = 30;
+        int returnDateSize = 30;
+        int numberOfPassengersLeftSize = 0;
+        int amountSize = 0;
+        int companyNameSize = 0;
+        for(Ticket ticket : ticketList){
+            if(ticket.getOrigin().length() > originSize){
+                originSize = ticket.getOrigin().length();
+            }if(ticket.getDestination().length() > destinationSize){
+                destinationSize = ticket.getDestination().length();
+            }if(String.valueOf(ticket.getNumberOfPassengers()).length() > numberOfPassengersLeftSize){
+                numberOfPassengersLeftSize = String.valueOf(ticket.getNumberOfPassengers()).length();
+            }if(String.valueOf(ticket.getAmount()).length() > amountSize){
+                amountSize = String.valueOf(ticket.getAmount()).length();
+            }if(ticket.getCompany().getCompanyName().length() > companyNameSize){
+                companyNameSize = ticket.getCompany().getCompanyName().length();
+            }
+        }
+
+        int cover = idSize + originSize + destinationSize + departureDateSize + returnDateSize + numberOfPassengersLeftSize + amountSize + companyNameSize + 84;
+
+        System.out.print("+");
+        for(int i = 0 ; i<cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        System.out.format("| %" + (-(idSize + 5)) + "s","id");
+        System.out.format("| %" + (-(originSize + 5)) + "s","origin");
+        System.out.format("| %" + (-(destinationSize + 5)) + "s","destination");
+        System.out.format("| %" + (-(departureDateSize + 5)) + "s","departure date");
+        System.out.format("| %" + (-(returnDateSize + 5)) + "s","return date");
+        System.out.format("| %" + (-(numberOfPassengersLeftSize + 25)) + "s","number of passengers");
+        System.out.format("| %" + (-(amountSize + 8)) + "s","price");
+        System.out.format("| %" + (-(companyNameSize + 9)) + "s |\n","company");
+
+        System.out.print("+");
+        for(int i = 0 ; i<cover; i++){
+            System.out.print("-");
+        }
+        System.out.println("+");
+
+        for(Ticket ticket : ticketList){
+            System.out.format("| %" + (-(idSize + 5)) + "s",ticket.getId());
+            System.out.format("| %" + (-(originSize + 5)) + "s",ticket.getOrigin());
+            System.out.format("| %" + (-(destinationSize + 5)) + "s",ticket.getDestination());
+            System.out.format("| %" + (-(departureDateSize + 5)) + "s",ticket.getDepartureDate());
+            System.out.format("| %" + (-(returnDateSize + 5)) + "s",ticket.getReturnDate());
+            System.out.format("| %" + (-(numberOfPassengersLeftSize + 25)) + "s",ticket.getNumberOfPassengers());
+            System.out.format("| %" + (-(amountSize + 8)) + "s",ticket.getAmount());
+            System.out.format("| %" + (-(companyNameSize + 9)) + "s |\n",ticket.getCompany().getCompanyName());
+        }
+
+        System.out.print("+");
+        for(int i = 0 ; i<cover; i++){
             System.out.print("-");
         }
         System.out.println("+");

@@ -7,4 +7,6 @@ import domain.Ticket;
 public interface HistoryService extends BaseService<History,Long> {
 
     void addHistory(Ticket ticket, int passengers);
+
+    void customerTickets();
 }

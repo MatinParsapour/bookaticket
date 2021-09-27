@@ -74,4 +74,15 @@ public class DemonstrateMenus {
         System.out.println("|            3.Back            |");
         System.out.println("+------------------------------+");
     }
+
+    public void ticketMenu(){
+        System.out.println("+-------------------------------------------------------------------------+");
+        System.out.println("|  Change order :                                                         |");
+        System.out.println("|     1.Price ascending   2.Price descending   3.Company name ascending   |");
+        System.out.println("|     4.Origin ascending  5.Origin descending  6.Company name descending  |");
+        System.out.println("|     7.Destination ascending      8.Destination descending               |");
+        System.out.println("|  Ticket :                                                               |");
+        System.out.println("|      9.Book a ticket                10.Back                             |");
+        System.out.println("+-------------------------------------------------------------------------+");
+    }
 }

@@ -52,7 +52,7 @@ public class CustomerRepositoryImpl extends BaseRepositoryImpl<Customer, Long> i
     }
 
     @Override
-    public Customer findCustomerByNationalCode(String nationalCode) {
+    public Customer findCustomerByNationalCode(long nationalCode) {
         try{
             return entityManager.createQuery("SELECT c " +
                     "FROM Customer c " +

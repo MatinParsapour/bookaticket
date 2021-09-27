@@ -37,14 +37,14 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
 
     @Override
     public List<Ticket> findTicketsByOrder(String field, String position, String origin, String destination) {
-        List tickets = new ArrayList<>();
+        List<Ticket> tickets = new ArrayList<>();
         if (position.equals("ascending")) {
             if (field.equals("price")) {
                 tickets = entityManager.createQuery("SELECT t " +
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.amount ASC ").setParameter("origin", origin).
+                        "ORDER BY t.amount ASC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -54,7 +54,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "JOIN t.company c " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY c.companyName ASC ").setParameter("origin", origin).
+                        "ORDER BY c.companyName ASC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -63,7 +63,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.origin ASC ").setParameter("origin", origin).
+                        "ORDER BY t.origin ASC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -72,7 +72,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.destination ASC ").setParameter("origin", origin).
+                        "ORDER BY t.destination ASC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -83,7 +83,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.amount DESC ").setParameter("origin", origin).
+                        "ORDER BY t.amount DESC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -93,7 +93,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "JOIN t.company c " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY c.companyName DESC ").setParameter("origin", origin).
+                        "ORDER BY c.companyName DESC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -102,7 +102,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.origin DESC ").setParameter("origin", origin).
+                        "ORDER BY t.origin DESC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }
@@ -111,7 +111,7 @@ public class TicketRepositoryImpl extends BaseRepositoryImpl<Ticket, Long> imple
                         "FROM Ticket t " +
                         "WHERE t.origin = :origin " +
                         "AND t.destination = :destination " +
-                        "ORDER BY t.destination DESC ").setParameter("origin", origin).
+                        "ORDER BY t.destination DESC ",Ticket.class).setParameter("origin", origin).
                         setParameter("destination", destination).
                         getResultList();
             }

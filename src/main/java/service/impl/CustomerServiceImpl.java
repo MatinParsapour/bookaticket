@@ -1,6 +1,7 @@
 package service.impl;
 
 import base.service.BaseServiceImpl;
+import domain.CreditCard;
 import domain.Customer;
 import domain.Ticket;
 import repository.CustomerRepository;
@@ -91,7 +92,8 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 if (choice == 1) {
                     //TODO History
                 } else if (choice == 2) {
-                    //TODO Your cards
+                    ApplicationContext.getCreditCardService().CustomerCards();
+
                 } else if (choice == 3) {
                     ApplicationContext.getTicketServiceImpl().showTickets();
                 } else if (choice == 4) {
@@ -417,5 +419,11 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
         customer.getTickets().add(ticket);
         createOrUpdate(customer);
 
+    }
+
+    public void addCardToList(CreditCard creditCard) {
+        Customer customer = SecurityUser.getCustomer();
+        customer.getCreditCards().add(creditCard);
+        createOrUpdate(customer);
     }
 }

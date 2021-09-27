@@ -90,22 +90,20 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 ApplicationContext.getDemonstrationMenus().customerMainMenu();
                 int choice = new Scanner(System.in).nextInt();
                 if (choice == 1) {
-                    //TODO History
+                    ApplicationContext.getHistoryServiceImpl().customerTickets();
                 } else if (choice == 2) {
-                    ApplicationContext.getCreditCardService().CustomerCards();
+                    ApplicationContext.getCreditCardService().customerCards();
 
                 } else if (choice == 3) {
                     ApplicationContext.getTicketServiceImpl().showTickets();
                 } else if (choice == 4) {
-                    //TODO Booked ticket
-                } else if (choice == 5) {
                     break;
-                } else if (choice == 6) {
+                } else if (choice == 5) {
                     int nextMover = logOut();
                     if(nextMover == 1){
                         break;
                     }
-                } else if (choice == 7){
+                } else if (choice == 6){
                     SecurityUser.setCustomer(null);
                     break;
                 } else {

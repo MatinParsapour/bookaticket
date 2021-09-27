@@ -33,6 +33,9 @@ public class Customer extends User{
     @ManyToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
+    @OneToOne
+    private History history;
+
     public Customer(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, String userName, long password) {
         super(firstName, lastName, email, phoneNumber, nationalCode, birthDate);
         this.userName = userName;

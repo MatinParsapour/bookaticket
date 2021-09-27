@@ -23,4 +23,10 @@ public class History extends BaseEntity<Long> {
 
     @OneToMany
     private List<Ticket> tickets;
+
+    private int numberOfTicket;
+
+    private Boolean isBooked;
+
+    private Boolean isBought;
 }

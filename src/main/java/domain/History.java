@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
@@ -18,11 +19,11 @@ import java.util.List;
 public class History extends BaseEntity<Long> {
 
 
-    @OneToMany
-    private List<Customer> customers;
+    @OneToOne
+    private Customer customers;
 
-    @OneToMany
-    private List<Ticket> tickets;
+    @OneToOne
+    private Ticket tickets;
 
     private int numberOfTicket;
 

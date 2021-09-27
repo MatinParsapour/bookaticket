@@ -2,6 +2,7 @@ package service;
 
 import base.service.BaseService;
 import domain.Customer;
+import domain.Ticket;
 
 public interface CustomerService extends BaseService<Customer, Long> {
 
@@ -14,4 +15,6 @@ public interface CustomerService extends BaseService<Customer, Long> {
     void customerMenu();
 
     int logOut();
+
+    void addTicketToList(Ticket ticket);
 }

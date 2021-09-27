@@ -2,6 +2,7 @@ package service.impl;
 
 import base.service.BaseServiceImpl;
 import domain.Customer;
+import domain.Ticket;
 import repository.CustomerRepository;
 import service.CustomerService;
 import util.ApplicationContext;
@@ -92,7 +93,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 } else if (choice == 2) {
                     //TODO Your cards
                 } else if (choice == 3) {
-                    //TODO Book a ticket
+                    ApplicationContext.getTicketServiceImpl().showTickets();
                 } else if (choice == 4) {
                     //TODO Booked ticket
                 } else if (choice == 5) {
@@ -149,7 +150,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                     nationalCode = new Scanner(System.in).next();
                     matcher = pattern.matcher(nationalCode);
                 }
-                Customer customer = repository.findCustomerByNationalCode(nationalCode);
+                Customer customer = repository.findCustomerByNationalCode(Long.parseLong(nationalCode));
                 if (customer == null) {
                     System.out.println("1.Acceptable         2.Unacceptable");
                     int choice = new Scanner(System.in).nextInt();
@@ -410,4 +411,11 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
         }
     }
 
+    @Override
+    public void addTicketToList(Ticket ticket) {
+        Customer customer =SecurityUser.getCustomer();
+        customer.getTickets().add(ticket);
+        createOrUpdate(customer);
+
+    }
 }

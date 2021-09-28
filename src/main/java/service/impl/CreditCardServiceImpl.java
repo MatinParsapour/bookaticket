@@ -158,10 +158,16 @@ public class CreditCardServiceImpl extends BaseServiceImpl<CreditCard, Long, Cre
         }
     }
     private LocalDate expirationDate() {
-        System.out.println("Expiration date");
-        int year = year();
-        int month = month();
-        return LocalDate.of(year,month,15);
+        while(true){
+            System.out.println("Expiration date");
+            int year = year();
+            int month = month();
+            if(LocalDate.of(year,month,15).isAfter(LocalDate.now())){
+                return LocalDate.of(year,month,15);
+            }else{
+                System.out.println("This is not a valid date for expiration date");
+            }
+        }
     }
 
     private int year(){

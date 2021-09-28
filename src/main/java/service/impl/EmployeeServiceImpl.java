@@ -77,6 +77,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee, Long, Employe
             employee.setIsEmployee(null);
             employee.setCompany(company);
             createOrUpdate(employee);
+            System.out.println("Your request has sent to the ceo");
         }
     }
 

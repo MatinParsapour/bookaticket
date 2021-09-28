@@ -97,16 +97,14 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
                 } else if (choice == 3) {
                     ApplicationContext.getTicketServiceImpl().showTickets();
                 } else if (choice == 4) {
-                    break;
-                } else if (choice == 5) {
                     int nextMover = logOut();
                     if(nextMover == 1){
                         break;
                     }
-                } else if (choice == 6){
+                } else if (choice == 5) {
                     SecurityUser.setCustomer(null);
                     break;
-                } else {
+                }else {
                     System.out.println("Wrong input");
                 }
             } catch (InputMismatchException exception) {

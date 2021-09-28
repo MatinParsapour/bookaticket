@@ -33,7 +33,7 @@ public class Customer extends User{
     @ManyToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private History history;
 
     public Customer(String firstName, String lastName, String email, long phoneNumber, long nationalCode, LocalDate birthDate, String userName, long password) {

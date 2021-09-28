@@ -52,8 +52,7 @@ public class DemonstrateMenus {
         System.out.println("|       1.Your tickets         |");
         System.out.println("|        2.Your cards          |");
         System.out.println("|       3.Book a ticket        |");
-        System.out.println("|         4.Log out            |");
-        System.out.println("|           5.Exit             |");
+        System.out.println("|           4.Exit             |");
         System.out.println("+------------------------------+");
     }
 

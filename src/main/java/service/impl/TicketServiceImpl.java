@@ -32,7 +32,6 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket, Long, TicketRepos
         Company company = SecurityUser.getEmployee().getCompany();
         Ticket ticket = new Ticket(origin,destination,departureDateTime,returnDateTime,numberOfPassengers,amount);
         ticket.setCompany(company);
-        ticket.getCustomer().add(SecurityUser.getCustomer());
         createOrUpdate(ticket);
         company.getTickets().add(ticket);
         ApplicationContext.getCompanyServiceImpl().createOrUpdate(company);

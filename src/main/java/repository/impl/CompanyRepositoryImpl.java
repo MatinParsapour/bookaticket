@@ -19,12 +19,12 @@ public class CompanyRepositoryImpl extends BaseRepositoryImpl<Company, Long> imp
     }
 
     @Override
-    public Company findCompanyByName(String companyName) {
+    public Company findCompanyByName(long id) {
         try{
             return entityManager.createQuery("SELECT c " +
                     "FROM Company c " +
-                    "WHERE c.companyName = :companyName", Company.class).
-                    setParameter("companyName",companyName).
+                    "WHERE c.id = :id", Company.class).
+                    setParameter("id",id).
                     getSingleResult();
         }catch (NoResultException exception){
             return null;

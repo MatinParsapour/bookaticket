@@ -16,9 +16,9 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company, Long, CompanyRe
     @Override
     public Company selectCompany() {
         ApplicationContext.getDemonstrateInfo().demonstrateCompanyInfo(findAll());
-        System.out.println("Company name : ");
-        String companyName = new Scanner(System.in).nextLine();
-        Company company = repository.findCompanyByName(companyName);
+        System.out.println("Company id : ");
+        long id = new Scanner(System.in).nextLong();
+        Company company = repository.findCompanyByName(id);
         return company;
     }
 }
